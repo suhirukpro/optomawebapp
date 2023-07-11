@@ -1,0 +1,51 @@
+﻿@model SimpleContact.Models.ContactViewModel
+@{
+    ViewData["Title"] = "Home Page - Contact";
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <h1 class="display-4">Optoma Pretask</h1>
+        
+        <p>Below is the optoma pretask.   This is a very basic contact form that would send an email to optoma.</p>
+        <p>Please can you complete the implementation of the below form.</p>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-8 card p-4">
+        <h2>Contact us</h2>
+        <hr />
+        <form asp-controller="home" asp-action="contact" method="post">
+            <div class="form-group mb-2">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" asp-for="Name">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" asp-for="Email">
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label for="message">Message</label>
+                <textarea type="text" class="form-control" id="message" asp-for="Message"></textarea>
+                <span class="text-danger" asp-validation-for="Message"></span>
+            </div>
+            <div class="form-group mb-2">
+                <input type="submit" class="btn btn-primary" value="Send">
+            </div>
+        </form>
+
+        @if (ViewBag.IsSuccess==true)
+        {
+             <div class="alert alert-success" role="alert">
+                @ViewBag.SuccessMessage
+                </div>
+        }
+ 
+    </div>
+</div>
